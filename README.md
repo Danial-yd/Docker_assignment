@@ -57,6 +57,14 @@ CMD ["python", "code.py"]
 After creating the Dockerfile, the next step is to build the Docker image. This process will read the instructions in the Dockerfile and create an image that includes all the dependencies and the Python script.
 
 ### Build Command
+
+To build the Docker image, run the following command in your terminal:
+
+```bash
+docker build -t csv-analyzer .
+
+
+### Build Command
 docker build -t csv-analyzer .
 
 ## Step 5:
