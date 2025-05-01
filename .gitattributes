@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+Docker Assignment: CSV Analyzer
+Objective
+This project involves creating a Python data processing script, packaging it into a Docker container, and pushing the image to a container registry (e.g., Docker Hub). The script analyzes CSV data and outputs summary statistics.
