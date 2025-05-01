@@ -1,29 +1,34 @@
-Step 1: Python Script - CSV Analyzer
-The first step was to write a simple Python script that processes a CSV file and outputs some basic statistics. This was achieved by using the Pandas library.
+# Docker Assignment: CSV Analyzer
 
-Step 2: Create a requirements.txt File
-To ensure that the necessary dependencies are installed when building the Docker image, I created a requirements.txt file with the following contents:
+## Objective
 
-Step 3: Writing the Dockerfile
-The Dockerfile defines the instructions for building the Docker image. Below is the Dockerfile that sets up the Python environment, installs dependencies, copies the script into the image, and runs it.
-# Use official Python base image
-FROM python:3.10-slim
+This project involves creating a Python data processing script that analyzes CSV files and outputs summary statistics. The Python script is packaged into a Docker container, making it easy to run anywhere. 
 
-# Set the working directory
-WORKDIR /app
+### Steps involved:
+1. **Write a Python script** to analyze CSV data.
+2. **Create a Dockerfile** to build a Docker image.
+3. **Build the Docker image** and run the container.
+4. **Push the image to Docker Hub**.
 
-# Copy the Python script and requirements.txt into the container
-COPY csv_analyzer.py /app/
-COPY requirements.txt /app/
+---
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+## Step 1: Python Script - CSV Analyzer
 
-# Set the default command to run the Python script
-CMD ["python", "csv_analyzer.py"]
+The first step is writing a Python script that processes a CSV file and outputs some basic statistics. This was done using the **Pandas** library.
 
-Step 4: Building the Docker Image
-docker build -t csv-analyzer .
+### Python Script (`csv_analyzer.py`)
 
-Step 5: Running the Docker Container
-docker run -v /path/to/csv/files:/app csv-analyzer
+```python
+import pandas as pd
+
+def analyze_csv(file_path):
+    df = pd.read_csv(file_path)
+    print(f"Summary Statistics of {file_path}:\n")
+    print(df.describe())
+
+# Example usage
+if __name__ == "__main__":
+    file_path = "data.csv"  # Specify the path to your CSV file here
+    analyze_csv(file_path)
+
+
