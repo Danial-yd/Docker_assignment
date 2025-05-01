@@ -50,11 +50,16 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Set the default command to run the Python script
 CMD ["python", "code.py"]
 
+---
 
-## Step 4: 
+## Step 4: Building the Docker Image
+
+After creating the Dockerfile, the next step is to build the Docker image. This process will read the instructions in the Dockerfile and create an image that includes all the dependencies and the Python script.
+
+### Build Command
 docker build -t csv-analyzer .
 
-
-## Step 5: 
+## Step 5:
 docker run -v /path/to/csv/files:/app csv-analyzer
+
 
