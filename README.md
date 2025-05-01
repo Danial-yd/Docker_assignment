@@ -16,19 +16,45 @@ This project involves creating a Python data processing script that analyzes CSV
 
 The first step is writing a Python script that processes a CSV file and outputs some basic statistics. This was done using the **Pandas** library.
 
-### Python Script (`csv_analyzer.py`)
+## Step 2: Create a `requirements.txt` File
 
-```python
-import pandas as pd
+To ensure that the necessary dependencies are installed when building the Docker image, a `requirements.txt` file was created. This file lists the required Python packages that the script depends on.
 
-def analyze_csv(file_path):
-    df = pd.read_csv(file_path)
-    print(f"Summary Statistics of {file_path}:\n")
-    print(df.describe())
+### `requirements.txt`
 
-# Example usage
-if __name__ == "__main__":
-    file_path = "data.csv"  # Specify the path to your CSV file here
-    analyze_csv(file_path)
 
+This file specifies that the **Pandas** library version `1.5.3` is required for the Python script to run.
+
+---
+
+## Step 3: Writing the Dockerfile
+
+The Dockerfile defines the instructions for building the Docker image. It sets up the Python environment, installs dependencies, copies the Python script and the `requirements.txt` file into the image, and specifies the command to run the Python script.
+
+### Dockerfile
+
+```Dockerfile
+# Use official Python base image
+FROM python:3.10-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the Python script and requirements.txt into the container
+COPY code.py /app/
+COPY requirements.txt /app/
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Set the default command to run the Python script
+CMD ["python", "code.py"]
+
+
+## Step 4: 
+docker build -t csv-analyzer .
+
+
+## Step 5: 
+docker run -v /path/to/csv/files:/app csv-analyzer
 
